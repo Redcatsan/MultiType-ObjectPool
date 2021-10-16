@@ -21,7 +21,7 @@ public class ObjPool : MonoBehaviour
 
     public GameObject Create(string name){//生成
         if(!ObjPoolDic.ContainsKey(name)){
-            Register(name,AddCount);
+            print("You must need Register() to use Create() method");
         }
         GameObject returnobj = ObjPoolDic[name].Pop();
         returnobj.SetActive(true);
