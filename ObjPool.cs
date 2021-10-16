@@ -8,7 +8,7 @@ public class ObjPool : MonoBehaviour
     public List<GameObject> EnableObjList = new List<GameObject>();
     public int AddCount;
 
-    public Register(GameObject target,int count){//追加・登録
+    public void Register(GameObject target,int count){//追加・登録
         if(!ObjPoolDic.ContainsKey(target.name)){
             ObjPoolDic.Add(target.name,new Stack<GameObject>());
         }
