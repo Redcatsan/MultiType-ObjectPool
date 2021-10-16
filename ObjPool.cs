@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ObjPool : MonoBehaviour
 {
-    public Dictionary<string,Stack<GameObject>> ObjPoolDic = new Dictionary<string,Stack<GameObject>>();
-    public List<GameObject> EnableObjList = new List<GameObject>();
-    public int AddCount;
+    public static Dictionary<string,Stack<GameObject>> ObjPoolDic = new Dictionary<string,Stack<GameObject>>();
+    public static List<GameObject> EnableObjList = new List<GameObject>();
 
-    public void Register(GameObject target,int count){//追加・登録
+    public static void Register(GameObject target,int count){//追加・登録
         if(!ObjPoolDic.ContainsKey(target.name)){
             ObjPoolDic.Add(target.name,new Stack<GameObject>());
         }
@@ -19,7 +18,7 @@ public class ObjPool : MonoBehaviour
         }
     }
 
-    public GameObject Create(string name){//生成
+    public static GameObject Create(string name){//生成
         if(!ObjPoolDic.ContainsKey(name)){
             print("You must need Register() to use Create() method");
         }
@@ -29,7 +28,7 @@ public class ObjPool : MonoBehaviour
         return returnobj;
     }
 
-    public void Sleep(GameObject target){//使い終わった後の処理
+    public static void Sleep(GameObject target){//使い終わった後の処理
         target.SetActive(false);
         EnableObjList.Remove(target);
         ObjPoolDic[target.name].Push(target);
