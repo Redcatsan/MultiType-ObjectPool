@@ -18,15 +18,19 @@ public class ObjPool : MonoBehaviour
         }
     }
 
-    public static object Create(string name,Vector3 pos,Quaternion rot){//生成
+    public static object Create(string name,Vector3? pos=  null,Quaternion? rot = null){//生成
         if(!ObjPoolDic.ContainsKey(name)){
             print("You must need Register() to use Create() method");
         }
         object returnobj = ObjPoolDic[name].Pop();
         returnobj.SetActive(true);
         EnableObjList.Add(returnobj);
-        returnobj.transform.position = pos;
-        returnobj.transform.rotation = rot;
+        if(pos != null){
+            returnobj.transform.position = (Vector3)pos;
+        }
+        if(rot != null){
+            returnobj.transform.rotation = (Quaternion)rot;
+        }
         return returnobj;
     }
 
