@@ -31,7 +31,7 @@ public class ObjPool : MonoBehaviour
 
     public void Sleep(GameObject target){//使い終わった後の処理
         target.SetActive(false);
-        EnableObjList.Remove(target));
+        EnableObjList.Remove(target);
         ObjPoolDic[target.name].Push(target);
     }
 
